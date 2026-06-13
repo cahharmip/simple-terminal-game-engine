@@ -17,7 +17,7 @@ public:
 	virtual void Update(float deltatime) {};
 	virtual void Draw(float deltatime) {};
 	virtual void Dispose() {};
-	transform GetTransform() { return transform; }
+	transform GetTransform() const { return transform; }
 
 protected:
 	transform transform = {};

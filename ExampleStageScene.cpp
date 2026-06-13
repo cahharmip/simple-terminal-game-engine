@@ -1,11 +1,11 @@
 #include "ExampleStageScene.h"
-#include "InputManager.h";
-#include "SceneManager.h";
+#include "InputManager.h"
+#include "SceneManager.h"
 
 void ExampleStageScene::Init()
 {
 	player_x.Init();
-	player_zero.Init();
+	e_met.Init();
 }
 
 void ExampleStageScene::Update(float deltaTime)
@@ -15,14 +15,15 @@ void ExampleStageScene::Update(float deltaTime)
 	{
 		SceneManager::GetInstance().setScene("CharacterSelectScene");
 	}
+	e_met.Update(deltaTime);
 	player_x.Update(deltaTime);
-	player_zero.Update(deltaTime);
 }
 void ExampleStageScene::Draw(float deltaTime)
 {
+	e_met.Draw(deltaTime);
 	player_x.Draw(deltaTime);
-	player_zero.Draw(deltaTime);
 }
+
 void ExampleStageScene::Dispose()
 {
 }

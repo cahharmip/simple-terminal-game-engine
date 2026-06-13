@@ -3,6 +3,7 @@
 #include "BaseScene.h"
 #include "X.h"
 #include "Zero.h"
+#include "EnemyMet.h"
 
 class ExampleStageScene : public BaseScene
 {
@@ -14,5 +15,5 @@ public:
 	void Dispose() override;
 private:
 	X player_x;
-	Zero player_zero;
+	EnemyMet e_met;
 };

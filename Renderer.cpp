@@ -1,34 +1,36 @@
 #include "Renderer.h"
+#include <cmath>
 
 void Renderer::WriteOverCanvas(Vector2 worldPosition, std::vector<RenderIndexInfo> indicesInfo)
 {
 	//Draw index to screen m_canvas[y][x] assign
 	for (auto& indexInfo : indicesInfo)
 	{
-		Vector2 screenPoint = {};
+		int screenPointX = 0;
+		int screenPointY = 0;
 		//to world space -> to clip space
-		screenPoint.x = indexInfo.index.x - indexInfo.origin.x + worldPosition.x;
-		screenPoint.y = indexInfo.index.y - indexInfo.origin.y + HEIGHT - worldPosition.y;
+		screenPointX = std::lround(indexInfo.index.x) - std::lround(indexInfo.origin.x) + std::lround(worldPosition.x);
+		screenPointY = std::lround(indexInfo.index.y) - std::lround(indexInfo.origin.y) + HEIGHT - std::lround(worldPosition.y);
 		//check out of bound
-		if (screenPoint.x < 0)
+		if (screenPointX < 0)
 		{
-			screenPoint.x = 0;
+			screenPointX = 0;
 		}
-		else if (screenPoint.x >= WIDTH)
+		else if (screenPointX >= WIDTH)
 		{
-			screenPoint.x = WIDTH - 1;
-		}
-
-		if (screenPoint.y < 0)
-		{
-			screenPoint.y = 0;
-		}
-		else if (screenPoint.y >= HEIGHT)
-		{
-			screenPoint.y = HEIGHT - 1;
+			screenPointX = WIDTH - 1;
 		}
 
-		m_canvas[screenPoint.y][screenPoint.x] = indexInfo.color;
+		if (screenPointY < 0)
+		{
+			screenPointY = 0;
+		}
+		else if (screenPointY >= HEIGHT)
+		{
+			screenPointY = HEIGHT - 1;
+		}
+
+		m_canvas[screenPointY][screenPointX] = indexInfo.color;
 	}
 }
 

@@ -12,6 +12,8 @@ struct RenderIndexInfo
 class Renderer
 {
 public:
+	static int const WIDTH = 50;
+	static int const HEIGHT = 25;
 	static Renderer& GetInstance()
 	{
 		static Renderer instance;
@@ -25,7 +27,5 @@ public:
 	void BeginFrame();
 	void const EndFrame();
 private:
-	static int const WIDTH = 50;
-	static int const HEIGHT = 25;
 	char m_canvas[HEIGHT][WIDTH];
 };
