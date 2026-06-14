@@ -10,7 +10,7 @@ void CharacterSelectScene::Init()
 void CharacterSelectScene::Update(float deltaTime)
 {
 	std::cout << "-----------Scene : Character Select -----------\n";
-	if (InputManager::GetInstance().IsKeyPressed('c'))
+	if (InputManager::GetInstance().IsTriggered('C'))
 	{
 		SceneManager::GetInstance().setScene("ExampleStageScene");
 	}

@@ -1,10 +1,11 @@
 #pragma once
 #include "pch.h"
 #include "BaseCharacter.h"
+#include "ControlableObject.h"
 #include "CSprite.h"
 #include <vector>
 
-class Zero : public BaseCharacter
+class Zero : public BaseCharacter, public ControlableObject
 {
 public:
 	~Zero() override = default;

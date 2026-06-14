@@ -15,5 +15,6 @@ public:
 	void Dispose() override;
 private:
 	X player_x;
+	Zero player_z;
 	EnemyMet e_met;
 };

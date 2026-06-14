@@ -1,6 +1,6 @@
 #pragma once
 #include "pch.h"
-#include <Windows.h>
+#include <windows.h>
 
 class InputManager
 {
@@ -13,10 +13,12 @@ public:
 
 	bool Update();
 
-	bool IsKeyPressed(char c) const;
-
+	bool IsPressed(int key) { return m_curr[key]; }
+	bool IsTriggered(int key) { return m_curr[key] && !m_prev[key]; }
+	bool IsReleased(int key) { return !m_curr[key] && m_prev[key]; }
 	void Clear();
 
 private:
-	char m_current_message;
+	bool m_curr[256] = {};
+	bool m_prev[256] = {};
 };

@@ -45,6 +45,9 @@
     <ClCompile Include="EnemyMet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ControlableObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameObject.h">
@@ -60,9 +63,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IDamageable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IControlableObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BaseUI.h">
@@ -105,6 +105,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EnemyMet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlableObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

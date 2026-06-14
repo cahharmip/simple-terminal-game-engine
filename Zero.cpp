@@ -9,22 +9,7 @@ void Zero::Init()
 
 void Zero::Update(float deltaTime)
 {
-	if (InputManager::GetInstance().IsKeyPressed('w'))
-	{
-		transform.position.y += 1;
-	}
-	if (InputManager::GetInstance().IsKeyPressed('a'))
-	{
-		transform.position.x -= 1;
-	}
-	if (InputManager::GetInstance().IsKeyPressed('s'))
-	{
-		transform.position.y -= 1;
-	}
-	if (InputManager::GetInstance().IsKeyPressed('d'))
-	{
-		transform.position.x += 1;
-	}
+	UpdateInput(deltaTime);
 }
 
 void Zero::Draw(float deltaTime)

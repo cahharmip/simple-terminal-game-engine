@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CharacterSelectScene.cpp" />
+    <ClCompile Include="ControlableObject.cpp" />
     <ClCompile Include="CSprite.cpp" />
     <ClCompile Include="EnemyMet.cpp" />
     <ClCompile Include="ExampleStageScene.cpp" />
@@ -145,12 +146,12 @@
     <ClInclude Include="BaseScene.h" />
     <ClInclude Include="BaseUI.h" />
     <ClInclude Include="CharacterSelectScene.h" />
+    <ClInclude Include="ControlableObject.h" />
     <ClInclude Include="CSprite.h" />
     <ClInclude Include="EnemyMet.h" />
     <ClInclude Include="ExampleStageScene.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="ICollectableObject.h" />
-    <ClInclude Include="IControlableObject.h" />
     <ClInclude Include="IDamageable.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IScene.h" />

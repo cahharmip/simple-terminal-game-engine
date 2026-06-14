@@ -3,25 +3,19 @@
 
 bool InputManager::Update()
 {
-	if (_kbhit()) {
-		char ch = _getch();
-		m_current_message = ch;
-		if (ch == 'q')
-		{
-			return true;
-		}
+	for (int i = 0; i < 256; i++)
+	{
+		m_prev[i] = m_curr[i];
+		m_curr[i] = (GetAsyncKeyState(i) & 0x8000) != 0;
+	}
+
+	if (IsPressed('Q'))
+	{
+		return true;
 	}
 	return false;
 }
 
 void InputManager::Clear()
 {
-	m_current_message = '\0';
-}
-
-bool InputManager::IsKeyPressed(char c) const 
-{
-	if (m_current_message==c) return true;
-
-	return false;
 }
