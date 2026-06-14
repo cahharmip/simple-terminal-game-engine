@@ -39,7 +39,7 @@ void Renderer::BeginFrame()
 	memset(m_canvas, '.', sizeof(m_canvas));
 }
 
-void const Renderer::EndFrame()
+void Renderer::EndFrame()
 {
 	for (int i = 0; i < HEIGHT; ++i)
 	{

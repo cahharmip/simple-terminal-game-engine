@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="CharacterSelectScene.cpp" />
     <ClCompile Include="ControlableObject.cpp" />
     <ClCompile Include="CSprite.cpp" />
@@ -145,6 +146,7 @@
     <ClInclude Include="BaseItem.h" />
     <ClInclude Include="BaseScene.h" />
     <ClInclude Include="BaseUI.h" />
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="CharacterSelectScene.h" />
     <ClInclude Include="ControlableObject.h" />
     <ClInclude Include="CSprite.h" />

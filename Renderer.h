@@ -25,7 +25,7 @@ public:
 	}
 	void WriteOverCanvas(Vector2 worldPosition, std::vector<RenderIndexInfo> indicesInfo);
 	void BeginFrame();
-	void const EndFrame();
+	void EndFrame();
 private:
 	char m_canvas[HEIGHT][WIDTH];
 };

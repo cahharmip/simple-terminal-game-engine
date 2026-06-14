@@ -6,6 +6,9 @@
 class ControlableObject: public virtual GameObject 
 {
 public:
+	ControlableObject() = delete;
+	explicit ControlableObject(BaseScene* scene): GameObject(scene) {}
+	virtual ~ControlableObject() = default;
 	void UpdateInput(float deltaTime);
 	void AddCallback(std::function<void(float deltaTime)> callback);
 	void SetEnable(bool enabled) { m_enabled = enabled; }

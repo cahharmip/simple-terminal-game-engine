@@ -1,11 +1,14 @@
 #include <math.h>
 #include "X.h"
 #include "InputManager.h"
+#include "BaseScene.h"
+#include "Bullet.h"
 
 void X::Init()
 {
 	CreateSprite();
 	transform.position = { 0, 4 };
+	InitCollision();
 }
 
 void X::Update(float deltaTime)
@@ -15,6 +18,7 @@ void X::Update(float deltaTime)
 	UpdateInput(deltaTime);
 	CheckPositionState();
 	UpdatePosition(deltaTime);
+	UpdateCollision();
 }
 
 void X::Draw(float deltaTime)
@@ -46,28 +50,36 @@ void X::OnMoveRight(float deltaTime)
 
 void X::OnMoveJump(float deltaTime)
 {
-	if (m_previous_state.action_state == JUMPING_OVER)
+	if (m_previous_state.jump_state == JUMPING_OVER)
 	{
-		m_current_state.action_state = JUMPING_OVER;
+		m_current_state.jump_state = JUMPING_OVER;
 		return;
 	}
 
-	if (m_previous_state.position_state != GROUNED && m_previous_state.action_state != JUMPING) return;
+	if (m_previous_state.position_state != GROUNED && m_previous_state.jump_state != JUMPING) return;
 
 	m_jump_time += deltaTime;
 	if (m_jump_time < m_jump_max_duration)
 	{
-		m_current_state.action_state = JUMPING;
+		m_current_state.jump_state = JUMPING;
 	}
 	else
 	{
-		m_current_state.action_state = JUMPING_OVER;
+		m_current_state.jump_state = JUMPING_OVER;
 	}
 }
 
 void X::OnMoveAttack(float deltaTime)
 {
-	m_current_state.action_state = ATTACKING;
+	m_current_state.attack_state = ATTACKING;
+	m_cooldown_count += deltaTime;
+	if (m_cooldown_count < ATTACK_COOLDOWN)
+	{
+		return;
+	}
+	m_cooldown_count = 0.0f;
+	Bullet* bullet = m_owner_scene->InstantiateGameObject<Bullet>(BaseScene::LAYER::DEFAULT);
+	bullet->transform.position = transform.position;
 }
 
 void X::OnMoveDash(float deltaTime)
@@ -150,7 +162,7 @@ void X::UpdatePosition(float deltaTime)
 	}
 
 	// Action modifier
-	if (m_current_state.action_state == JUMPING)
+	if (m_current_state.jump_state == JUMPING)
 	{
 		m_speed_y = m_jump_speed * (1 - m_jump_time / m_jump_max_duration) * deltaTime;
 	}
@@ -166,7 +178,7 @@ void X::UpdatePosition(float deltaTime)
 	}
 
 	// Position modifier
-	if (m_current_state.position_state == AIRBORNE && m_current_state.action_state != JUMPING)
+	if (m_current_state.position_state == AIRBORNE && m_current_state.jump_state != JUMPING)
 	{
 		m_jump_time = 0.0f;
 		m_fall_time += deltaTime;
@@ -186,4 +198,18 @@ void X::UpdatePosition(float deltaTime)
 	m_previous_state = m_current_state;
 	transform.position.x += m_speed_x;
 	transform.position.y += m_speed_y;
+}
+
+void X::InitCollision()
+{
+	m_collision.height = m_sprite.GetHeight();
+	m_collision.width = m_sprite.GetWidth();
+	m_collision.x = transform.position.x - m_collision.width / 2.0f;
+	m_collision.y = transform.position.y - m_collision.height / 2.0f;
+}
+
+void X::UpdateCollision()
+{
+	m_collision.x = transform.position.x - m_collision.width / 2.0f;
+	m_collision.y = transform.position.y - m_collision.height / 2.0f;
 }

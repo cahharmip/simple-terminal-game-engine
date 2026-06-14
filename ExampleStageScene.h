@@ -1,5 +1,6 @@
 #pragma once
 #include "pch.h"
+#include "memory"
 #include "BaseScene.h"
 #include "X.h"
 #include "Zero.h"
@@ -14,7 +15,5 @@ public:
 	void Draw(float deltaTime) override;
 	void Dispose() override;
 private:
-	X player_x;
-	Zero player_z;
-	EnemyMet e_met;
+	void CheckCollisionDefaultLayer();
 };
